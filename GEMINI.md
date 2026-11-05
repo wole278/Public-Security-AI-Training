@@ -1,7 +1,7 @@
 # GEMINI.md · 公安警务 AI 实战夜校培训系统（Public-Security-AI-Training）
 
 > **标准继承**：L0 安全与合规底线 + L1-manufacturing（客户私密、信息共享可控、安全）｜真源：`D:\github\project\ai-ops-hub\standards\`
-> **默认数据级别**：P2（客户私密/内部培训资产）　**发布模式**：不公开发布（私有库 `wole278/Public-Security-AI-Training`）
+> **默认数据级别**：P0（100% 程序合成虚拟脱敏实训数据，无任何真实警务/公民信息）　**发布模式**：公开仓库 + GitHub Pages 在线实训门户（`https://wole278.github.io/Public-Security-AI-Training/`）
 > **冲突规则**：L0 不可放宽；L1 与本文件冲突时以本文件为准，并在此注明差异。
 
 ---

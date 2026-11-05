@@ -1,8 +1,9 @@
 # 上海市某区公安技术部门 · AI 实战赋能夜校培训系统（Public-Security-AI-Training）
 
 > **标准继承**：`L0-security-compliance`（安全与合规底线）+ `L1-manufacturing-client`（客户私密、信息共享可控、安全）  
+> **在线网页学习与实训靶场入口**：**[https://wole278.github.io/Public-Security-AI-Training/](https://wole278.github.io/Public-Security-AI-Training/)** （默认实训登录口令：`SHGA-2026`）  
 > **适用模式**：**多班次夜校轮训（每班 1 小时 × 3 次课，共 3 小时）**  
-> **核心教学设计**：**80% 直读课件即可独立掌握（45分钟/课） + 20% 最佳实践随堂带练（15分钟/课）**
+> **核心教学设计**：**80% 直读课件即可独立掌握（45分钟/课） + 20% 最佳实践随堂带练（15分钟/课，支持网页在线沙盒免装环境直接跑通）**
 
 ---
 
@@ -37,13 +38,15 @@
 
 ## 🚀 四、 讲师开课与学员自检快速启动指南（Windows PowerShell）
 
-### 1. 打开交互式夜校课件主系统（推荐授课投屏 & 学员自学直接双击）
-直接在资源管理器中双击打开根目录下的 **[`index.html`](./index.html)**（内置 3 期完整图文教材、45m/15m 课堂倒计时器、提示词一键复制按钮与带练清单）。
+### 1. 在线网页登录学习与沙盒演练（推荐学员手机/平板/办公电脑直接访问）
+- **在线网址**：**[https://wole278.github.io/Public-Security-AI-Training/](https://wole278.github.io/Public-Security-AI-Training/)**
+- **学员登录**：进入网页后选择所属警种条线、参训班次，输入默认实训口令 **`SHGA-2026`** 即可登录；支持在网页内直接点击 **【▶️ 在网页沙盒运行诊断脚本】** 完成全部 6 大靶场演练并领取结业凭证。
+- **离线双击运行**：在断网公安内网环境中，直接双击根目录下的 **[`index.html`](./index.html)** 即可获得与线上完全一致的交互式实训体验。
 
-### 2. 一键初始化并运行全套 3 期随堂演练脚本
+### 2. 本地终端初始化并运行全套 3 期随堂演练脚本
 ```powershell
 # 进入项目根目录
-cd D:\github\project\Public-Security-AI-Training
+cd Public-Security-AI-Training
 
 # 1. 生成/重置全套虚拟脱敏警务数据集
 python labs/generate_mock_data.py
