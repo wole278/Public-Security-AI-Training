@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上海公安技术与业务干警 · AI 实战赋能夜校培训系统（1小时×3次课 · 80%直读+20%带练）</title>
+<style>
+  :root {
+    --bg-body: #070d1f;
+    --bg-panel: #0f1933;
+    --bg-card: #152244;
+    --border-color: #243b6b;
+    --police-blue: #2563eb;
+    --police-cyan: #00f5d4;
+    --police-gold: #f59e0b;
+    --police-red: #ef4444;
+    --police-green: #10b981;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-family: "Microsoft YaHei", "PingFang SC", -apple-system, sans-serif;
+    line-height: 1.65;
+    padding-bottom: 60px;
+  }
+  /* Top Header */
+  .top-header {
+    background: linear-gradient(90deg, #09132c 0%, #162a5c 50%, #09132c 100%);
+    border-bottom: 2px solid var(--police-blue);
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+  }
+  .brand-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .shield-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--police-blue), var(--police-cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #050b1a;
+  }
+  .brand-title h1 {
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 0.8px;
+  }
+  .brand-title p {
+    font-size: 12.5px;
+    color: var(--police-cyan);
+  }
+  /* Classroom Timer */
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 25, 51, 0.9);
+    border: 1px solid var(--border-color);
+    padding: 8px 14px;
+    border-radius: 8px;
+  }
+  .timer-display {
+    font-family: Consolas, monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--police-cyan);
+    min-width: 68px;
+    text-align: center;
+  }
+  .btn-sm {
+    background: #1e3264;
+    color: #e2e8f0;
+    border: 1px solid #3b5998;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+  }
+  .btn-sm:hover { background: var(--police-blue); color: #fff; }
+  /* Navigation Tabs */
+  .nav-tabs {
+    display: flex;
+    gap: 10px;
+    padding: 14px 28px;
+    background: #0a1228;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: var(--bg-panel);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: #fff; border-color: var(--police-blue); }
+  .tab-btn.active {
+    background: linear-gradient(135deg, #1d4ed8, #0f3388);
+    color: #fff;
+    border-color: var(--police-cyan);
+    box-shadow: 0 0 14px rgba(0, 245, 212, 0.25);
+  }
+  /* Container */
+  .container {
+    max-width: 1320px;
+    margin: 22px auto;
+    padding: 0 24px;
+  }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+  /* Banner */
+  .session-banner {
+    background: linear-gradient(135deg, #11224d 0%, #0d1836 100%);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--police-cyan);
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .session-banner h2 { font-size: 21px; color: #fff; margin-bottom: 6px; }
+  .session-banner p { font-size: 13.5px; color: var(--text-secondary); }
+  .ratio-pills { display: flex; gap: 10px; }
+  .pill-80 {
+    background: rgba(37, 99, 235, 0.25);
+    border: 1px solid #3b82f6;
+    color: #93c5fd;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pill-20 {
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid var(--police-green);
+    color: #6ee7b7;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  /* Section Cards */
+  .section-block {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 22px;
+  }
+  .section-block.lab-zone {
+    border: 2px solid var(--police-green);
+    background: linear-gradient(180deg, #0b212d 0%, #0d182e 100%);
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .section-header h3 {
+    font-size: 18px;
+    color: var(--police-cyan);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .time-tag {
+    background: #1e293b;
+    color: var(--police-gold);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  /* Comparison Grid */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+  @media (max-width: 900px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+  .bad-box {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .bad-box h4 { color: #f87171; margin-bottom: 8px; font-size: 14.5px; }
+  .good-box {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .good-box h4 { color: #34d399; margin-bottom: 8px; font-size: 14.5px; }
+  /* Prompt / Code Box with Copy Button */
+  .code-wrapper {
+    position: relative;
+    background: #060b18;
+    border: 1px solid #28417a;
+    border-radius: 8px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .code-bar {
+    background: #101d3b;
+    padding: 7px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    color: #93c5fd;
+    border-bottom: 1px solid #1e3264;
+  }
+  .copy-btn {
+    background: var(--police-blue);
+    color: #fff;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .copy-btn:hover { background: #1d4ed8; }
+  pre.prompt-pre {
+    padding: 14px 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: "Consolas", "Microsoft YaHei", monospace;
+    font-size: 13px;
+    color: #e2e8f0;
+    line-height: 1.6;
+  }
+  /* AI Output Preview */
+  .ai-output-card {
+    background: #0b152b;
+    border-left: 4px solid var(--police-gold);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+  .ai-output-card h4 {
+    color: var(--police-gold);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  /* Tables */
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  table.data-table th, table.data-table td {
+    border: 1px solid #233863;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.data-table th {
+    background: #16264c;
+    color: var(--police-cyan);
+    font-weight: 600;
+  }
+  table.data-table tr:nth-child(even) { background: rgba(21, 34, 68, 0.45); }
+  /* Checklist for 20% Lab */
+  .lab-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(21, 34, 68, 0.7);
+    border: 1px solid #2b4c7e;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .lab-step input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    accent-color: var(--police-green);
+    cursor: pointer;
+  }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--police-green);
+    color: #04130e;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    display: none;
+    z-index: 999;
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="brand-title">
+    <div class="shield-icon">警</div>
+    <div>
+      <h1>上海公安技术与业务干警 · AI 实战赋能夜校培训系统</h1>
+      <p>多班次轮训标准教材（1小时 × 3次课） | 80% 直读课件自学掌握 + 20% 随堂最佳实践带练</p>
+    </div>
+  </div>
+  <div class="timer-box">
+    <span style="font-size:12px;color:#94a3b8;">课堂倒计时:</span>
+    <span id="timerDisplay" class="timer-display">45:00</span>
+    <button class="btn-sm" onclick="startTimer(45)">80%直读(45m)</button>
+    <button class="btn-sm" onclick="startTimer(15)">20%带练(15m)</button>
+    <button class="btn-sm" onclick="stopTimer()">暂停</button>
+  </div>
+</header>
+
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="switchTab('tab1', this)">🚓 第 1 夜：安全破冰 + 城市交通与治安监控 (60m)</button>
+  <button class="tab-btn" onclick="switchTab('tab2', this)">🕵️ 第 2 夜：犯罪调查 + 笔录矛盾与流水碰撞 (60m)</button>
+  <button class="tab-btn" onclick="switchTab('tab3', this)">📊 第 3 夜：警务大数据 + Text-to-SQL 与态势大屏 (60m)</button>
+  <button class="tab-btn" onclick="switchTab('tab4', this)">🧰 随堂速查卡 & 公安内网本地部署指南</button>
+</nav>
+
+<main class="container">
+
+  <!-- ==================== TAB 1: SESSION 1 ==================== -->
+  <section id="tab1" class="tab-pane active">
+    <div class="session-banner">
+      <div>
+        <h2>第 1 夜（60 分钟）：警务 AI 合规红线 & 城市交通排堵与社会面治安智能监控</h2>
+        <p>无需编程基础，顺读完前 3 个模块（45分钟）即可掌握“留壳去肉脱敏法”、“R-C-T-F 万能提问公式”及交通/治安 3 大实战剧本。</p>
+      </div>
+      <div class="ratio-pills">
+        <span class="pill-80">📖 80% 直读自学（45分钟）</span>
+        <span class="pill-20">🛠️ 20% 最佳实践带练（15分钟）</span>
+      </div>
+    </div>
+
+    <!-- Module 1.1 -->
+    <div class="section-block">
+      <div class="section-header">
+        <h3>🛡️ 模块 1.1：警务 AI 安全合规死线与“留壳去肉 / 表头代写”双神技（直读即会）</h3>
+        <span class="time-tag">00:00 - 00:12 · 12分钟</span>
+      </div>
+      <p>公安干警使用大模型的第一前提是<strong>“绝对不违规、绝对不泄密、绝对不因幻觉办错案”</strong>。请熟记以下内外网双轨作业准则：</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:18%">安全技法</th>
+            <th style="width:16%">适用人群</th>
+            <th style="width:24%">一句话核心口诀</th>
+            <th style="width:21%">❌ 违规作死操作（严禁）</th>
+            <th style="width:21%">✅ 合规满分操作（推荐）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. 留壳去肉脱敏法</strong></td>
+            <td>全员民警（写预案、理笔录、写通报）</td>
+            <td><strong>真名换代号，尾号打星号，地名缩片区，只留逻辑壳</strong></td>
+            <td>把含真名“王建国(3101041982...)、沪A88991”的笔录直接粘贴到外网大模型。</td>
+            <td>本地将人名替换为 <code>张某甲/李某乙</code>，车牌换为 <code>[车牌A]</code>，生成文书后再在本地替换回真名。</td>
+          </tr>
+          <tr>
+            <td><strong>2. 表头脱敏代写法</strong></td>
+            <td>传统技术科 / 图侦 / 网安 / 经侦</td>
+            <td><strong>真表不出网，只发字段名；AI 写脚本，内网跑真数</strong></td>
+            <td>把含5万条市民110报警或银行流水的 Excel 直接上传到外网分析。</td>
+            <td><strong>只复制 Excel 第1行表头字段名 + 2行假数据</strong>发给外网 AI，让它写零依赖 Python 脚本，拷回内网 3 秒跑完真数据！</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Module 1.2 -->
+    <div class="section-block">
+      <div class="section-header">
+        <h3>🎯 模块 1.2：告别“一句话提问”——警务 R-C-T-F 四步万能公式（正反效果直读对比）</h3>
+        <span class="time-tag">00:12 - 00:25 · 13分钟</span>
+      </div>
+      <p>为什么别人用 AI 写出来的预案能直接发给派出所执行，而你写出来的全是“加强领导、提高认识”的空话？看下面的直观对比：</p>
+      <div class="compare-grid">
+        <div class="bad-box">
+          <h4>❌ 菜鸟提问（一句话提问法）</h4>
+          <p style="font-family:monospace;background:#1a1016;padding:8px;border-radius:4px;margin-bottom:8px;">“帮我写一份商业街夜市治安和交通管理的方案。”</p>
+          <p style="font-size:12.5px;color:#fca5a5;"><strong>AI 输出结果（毫无实战价值）：</strong><br>“一、提高思想认识，加强组织领导；二、加大巡逻防控力度，维护治安秩序；三、开展交通安全宣传……”（无法派警、无法考核、纯属废话）</p>
+        </div>
+        <div class="good-box">
+          <h4>✅ 警务专家提问（套用 R-C-T-F 公式：角色+辖区约束+脱敏任务+表格格式）</h4>
+          <p style="font-size:12.5px;color:#a7f3d0;">明确告知 AI：<strong>路网结构（双向2车道/地铁口）、高发时段（19-23点）、三大具体痛点（外卖违停/烧烤油烟酒后推搡/消防通道被堵）</strong>，并强制要求输出<strong>精确到岗位、时段、物理手段与触发阈值的表格</strong>！</p>
+        </div>
+      </div>
+
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】警务 R-C-T-F 标准提问模板：夜市交通排堵与治安联勤方案</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制提示词</button>
+        </div>
+        <pre class="prompt-pre">【R 角色】你是一名上海市中心城区公安分局的治安与交警联勤指挥员。
+【C 背景与约束】本辖区“星光夜市”（全长400米，双向2车道，紧邻地铁3号口，周边有2个老旧小区出入口）近期每晚19:00-23:00日均客流达1.2万人次。突出痛点：1. 外卖骑手与网约车在地铁口扎堆违停导致道路锁死；2. 烧烤摊占道引发噪音与上周2起醉酒推搡警情；3. 小区消防通道常被电瓶车堵死。要求：严禁官话套话，所有措施必须精确到“岗位、时段、物理隔离动作、联动部门”。
+【T 任务】请制定《星光夜市夜间交通排堵与治安防控微改造联勤实战方案》。
+【F 输出格式】请用 Markdown 表格输出，包含四列：【痛点靶向】【具体管控措施（精确到时段与物理手段）】【警力与联勤配置】【突发预案触发阈值与处置动作】。</pre>
+      </div>
+
+      <div class="ai-output-card">
+        <h4>✨ AI 真实输出预览（读完即懂什么叫“颗粒度拉满”）：</h4>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>痛点靶向</th>
+              <th>具体管控措施（精确到时段与物理手段）</th>
+              <th>警力与联勤配置</th>
+              <th>突发预案触发阈值与处置动作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. 地铁口外卖/网约车违停锁死主路</strong></td>
+              <td>① <strong>硬隔离</strong>：18:30-23:30 在地铁3号口左右50米设水马封闭机非开口；<br>② <strong>远端蓄车点</strong>：距入口120米支路设限时3分钟即停即走区，联动平台偏移导航定位。</td>
+              <td>交警 1警+2辅（驻北口分流点）；启用违停球机3分钟自动抓拍。</td>
+              <td><strong>阈值</strong>：车流倒灌至主干道。<br><strong>动作</strong>：立即实施“只出不进”单向循环管控。</td>
+            </tr>
+            <tr>
+              <td><strong>2. 烧烤摊占道与22点后酒后推搡</strong></td>
+              <td>① <strong>黄线限位</strong>：会同城管施划1.5米外摆黄线；<br>② <strong>亮灯屯警</strong>：21:00-23:30 夜市中心停放亮灯警车，步巡组每20分钟穿插巡查。</td>
+              <td>派出所 1警+2特保 + 城管2名队员联勤驻点。</td>
+              <td><strong>阈值</strong>：发现争吵推搡或醉酒人员。<br><strong>动作</strong>：2分钟内到场“先物理隔离双方、后核查身份”，防酒瓶伤人。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Module 1.3 -->
+    <div class="section-block">
+      <div class="section-header">
+        <h3>📹 模块 1.3：监控视觉大模型（VLM）告警二次过滤 & 路口配时失衡诊断</h3>
+        <span class="time-tag">00:25 - 00:45 · 20分钟</span>
+      </div>
+      <p><strong>实战痛点 1（监控误报高）：</strong>传统算法把“斑马线等红灯人群”报成“非法聚集”，把“环卫清运车”报成“违停”，把“夕阳反光+包子铺蒸汽”报成“火情”。用下方提示词让本地多模态大模型自动看图复核，<strong>直接砍掉 80%+ 误报</strong>：</p>
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】多模态视觉大模型（VLM）街面监控告警二次过滤 System Prompt</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制提示词</button>
+        </div>
+        <pre class="prompt-pre">你是一名公安视频巡检智能复核员。请观察输入的街面监控抓拍图片及传统算法初筛标签，结合画面上下文语义进行二次复核：
+1. 若初筛为【人员异常聚集】：区分“公交候车/斑马线等红灯/正常排队”与真正的“推搡打架/拉横幅围观”；
+2. 若初筛为【车辆违停占道】：区分“正在作业的警车/消防/救护/环卫垃圾车”与真正的“社会车辆堵死消防通道”；
+3. 严格输出纯 JSON：{"camera_id": "...", "is_false_alarm": true/false, "risk_level": "高/中/低/无", "scene_desc": "50字内客观描述", "disposal": "派警建议"}</pre>
+      </div>
+
+      <p style="margin-top:16px;"><strong>实战痛点 2（路口绿灯空放与拥堵并存）：</strong>用“表头脱敏法”让 AI 生成零依赖 Python 脚本，自动分析卡口过车 CSV 表，找出<strong>同一路口某方向饱和度 &gt; 95%（严重排队）而相交垂直方向饱和度 &lt; 35%（绿灯空放）</strong>的配时失衡点位：</p>
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】表头脱敏代写：路口过车流量饱和度与绿信比优化 Python 脚本提示词</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制提示词</button>
+        </div>
+        <pre class="prompt-pre">【角色】你是精通交通工程与 Python 标准库开发的公安科信工程师。
+【背景与约束】内网有一份卡口流量表 `mock_traffic_flow.csv`，表头为：`intersection_id,intersection_name,direction,time_slot,vehicle_count,saturation_limit,avg_speed_kmh,heavy_truck_ratio`。请仅使用 Python 3 内置标准库编写离线脚本。
+【任务】1. 计算各方向饱和度（vehicle_count / saturation_limit），找出饱和度>0.90且车速<15km/h的黑榜；2. 找出同一路口同一时段下，某方向饱和度>0.95而垂直方向饱和度<0.35的“绿信比失衡”路口，自动给出核减空放方向绿灯秒数补偿主车流的优化建议。</pre>
+      </div>
+    </div>
+
+    <!-- Module 1.4: 20% Lab -->
+    <div class="section-block lab-zone">
+      <div class="section-header">
+        <h3 style="color:#34d399;">🛠️ 第 1 夜 · 20% 最佳实践带练靶场（动手实操 15 分钟）</h3>
+        <span class="time-tag" style="background:#064e3b;color:#6ee7b7;">00:45 - 01:00 · 随堂演练</span>
+      </div>
+      <div class="lab-step">
+        <input type="checkbox">
+        <div>
+          <strong>【靶场 1A · 全员必练（7分钟）】台风暴雨早高峰排堵与安保预案一键推演：</strong><br>
+          点击复制上方 R-C-T-F 提示词，将场景改为“明早 06:30-09:30 暴雨橙色预警，辖区含3处易积水下立交与2所小学护校点”，要求 AI 输出《下立交积水 15cm/25cm/30cm 三级熔断封控与分流绕行指令表》。
+        </div>
+      </div>
+      <div class="lab-step">
+        <input type="checkbox">
+        <div>
+          <strong>【靶场 1B · 技术科/图侦必练（8分钟）】一键运行监控消警与路口配时失衡诊断脚本：</strong><br>
+          在终端运行以下命令，观察 3 秒内自动输出的<strong>60%监控误报拦截战报</strong>与<strong>世纪大道/中山北路绿信比核减10秒配时建议</strong>：
+          <div class="code-wrapper" style="margin-top:8px;">
+            <div class="code-bar"><span>PowerShell 终端命令</span><button class="copy-btn" onclick="copyCode(this)">复制命令</button></div>
+            <pre class="prompt-pre">python labs/session1_traffic_monitor/analyze_traffic_and_alerts.py</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: SESSION 2 ==================== -->
+  <section id="tab2" class="tab-pane">
+    <div class="session-banner">
+      <div>
+        <h2>第 2 夜（60 分钟）：犯罪调查、多人笔录矛盾雷达与资金/话单自动化侦查</h2>
+        <p>聚焦刑侦、经侦、网安、派出所办案痛点：3分钟揪出同案犯口供谎言 + 零代码写出洗钱过渡卡与幕后上线话单碰撞脚本。</p>
+      </div>
+      <div class="ratio-pills">
+        <span class="pill-80">📖 80% 直读自学（45分钟）</span>
+        <span class="pill-20">🛠️ 20% 最佳实践带练（15分钟）</span>
+      </div>
+    </div>
+
+    <!-- Module 2.1 -->
+    <div class="section-block">
+      <div class="section-header">
+        <h3>🕵️ 模块 2.1：多人讯问笔录“时间轴对齐 + 供述矛盾雷达”（直读案卷与 AI 预审输出）</h3>
+        <span class="time-tag">00:00 - 00:18 · 18分钟</span>
+      </div>
+      <p>在办理团伙案件时，嫌疑人往往互相甩锅。把脱敏后的多份讯问笔录喂给 AI，套用下方提示词，AI 就能自动绘出<strong>《五大维度供述冲突表》</strong>并指出<strong>“调取哪项客观电子证据能当场戳穿谎言”</strong>：</p>
+
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】多人讯问笔录时间轴对齐与供述矛盾雷达提示词</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制提示词</button>
+        </div>
+        <pre class="prompt-pre">【R 角色】你是一名拥有15年刑侦与预审经验的公安主办侦查员。
+【C 背景与约束】以下是一起掩饰、隐瞒犯罪所得案（跑分洗钱）三名同案嫌疑人（张某甲、李某乙、王某丙）的讯问笔录节选（已脱敏）。请严格基于文本事实分析，严禁脑补未提及的情节。
+【T 任务】
+1. 按时间先后顺序，用表格并列对比三人在各节点的行为供述；
+2. 聚焦【犯意提起、到场时间与在场状态、作案手机与卡归属、实际操作人、分赃金额与支付方式】5个维度列出直接冲突点，研判谁在撒谎避责；
+3. 针对每个矛盾点，给出“应调取的客观电子/监控证据”及“下一轮审讯突破发问话术”。
+---
+【附脱敏笔录摘要】：
+- 张某甲供述：10月12日晚8点李某乙主动找我称有工程避税款过账。晚9点半在如家302房，王某丙带2张农行卡并用他自己的小米手机操作转账，我只旁观。完事李某乙给我2000现金，他拿1万。不认识“阿龙”。
+- 李某乙供述：10月12日下午5点张某甲打电话催我找卡农，明知是网赌电诈黑钱。晚10点半我到302房时，张、王正用张某甲从上线“阿龙”处拿来的2部黑色苹果工作机操作。完事张某甲微信转我3000元，他自己拿1.2万以上。
+- 王某丙供述：晚9点张某甲开车(沪A·X9901)接我到302房，我出1张农行1张建行卡，张某甲用他双肩包里的黑色苹果手机操作，举到我脸前刷人脸。李某乙全程在楼下车里望风根本没进过302房！最后张某甲给我500现金。</pre>
+      </div>
+
+      <div class="ai-output-card">
+        <h4>✨ AI 预审专家输出预览（5 大撒谎点与客观证据一剑封喉）：</h4>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>冲突维度</th>
+              <th>张某甲 vs 李某乙 vs 王某丙 供述冲突</th>
+              <th>撒谎研判与一锤定音的客观取证动作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. 犯意提起与明知</strong></td>
+              <td>张称晚20点李主动找他且以为是工程款；李称下午17点张主动打电话催找卡且明知是黑钱。</td>
+              <td><strong>张某甲企图推卸主犯地位：</strong>立即调取两人 10月12日 16:00-21:00 运营商主被叫话单，谁先打给谁一目了然。</td>
+            </tr>
+            <tr>
+              <td><strong>2. 李某乙是否进房</strong></td>
+              <td>张、李均称李进了302房；唯独王某丙称“李全程在楼下车里望风未进房”。</td>
+              <td><strong>串供裂痕或包庇：</strong>调取如家酒店1楼大厅、电梯及3楼走廊监控，核实李某乙行踪。</td>
+            </tr>
+            <tr>
+              <td><strong>3. 作案手机与操作人</strong></td>
+              <td>张甩锅王用小米手机自己操作；李、王均指认张某甲使用黑色苹果专门工作机亲手操作。</td>
+              <td><strong>核心铁证突破：</strong>向农行/建行调取当晚手机银行登录的<strong>设备型号与 IMEI/IP</strong>，直接戳穿张某甲“只旁观”的谎言！</td>
+            </tr>
+            <tr>
+              <td><strong>4. 分赃主导权与方式</strong></td>
+              <td>张称李给他2000现金；李称张通过<strong>微信转账3000元</strong>给他。</td>
+              <td><strong>固定主犯分赃铁证：</strong>调取张、李当晚微信支付流水，3000元转账记录直接坐实张某甲系资金控制与分发主犯！</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Module 2.2 -->
+    <div class="section-block">
+      <div class="section-header">
+        <h3>💰 模块 2.2：零代码侦查——用“表头脱敏法”秒写洗钱流水与话单碰撞脚本</h3>
+        <span class="time-tag">00:18 - 00:45 · 27分钟</span>
+      </div>
+      <p>面对几十个 Excel 银行流水和通话详单，<strong>真数据绝不上外网！</strong>只需把表头字段名发给 AI，让它生成离线 Python 脚本：</p>
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】表头脱敏代写：银行流水快进快出识别 + 窝点同 IP + 话单幕后上线碰撞脚本提示词</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制提示词</button>
+        </div>
+        <pre class="prompt-pre">【角色】你是公安经侦与网安数据分析专家，精通使用 Python 3 标准库编写离线侦查工具。
+【背景与约束】内网电脑有两个 CSV 文件，无法安装第三方包，请仅使用 Python 3 标准库（csv, datetime, collections）编写脚本：
+1. `mock_bank_flows.csv` 表头：`tx_id,account_no,account_name,counterparty_no,counterparty_name,tx_time,tx_type,amount,balance_after,ip_address`
+2. `mock_call_records.csv` 表头：`record_id,suspect_name,suspect_phone,contact_phone,call_time,duration_sec,call_type,base_station_id`
+【任务】请自动分析并输出：
+1. 资金到账30分钟内转出率>90%的“快进快出洗钱过渡卡”；
+2. 不同账户网银转账使用相同 `ip_address` 的窝点关联卡组；
+3. 话单中同时联系 2 名以上不同嫌疑人的神秘外部号码（疑似上线“阿龙”）及同基站（base_station_id）碰面记录。</pre>
+      </div>
+    </div>
+
+    <!-- Module 2.3: 20% Lab -->
+    <div class="section-block lab-zone">
+      <div class="section-header">
+        <h3 style="color:#34d399;">🛠️ 第 2 夜 · 20% 最佳实践带练靶场（动手实操 15 分钟）</h3>
+        <span class="time-tag" style="background:#064e3b;color:#6ee7b7;">00:45 - 01:00 · 随堂演练</span>
+      </div>
+      <div class="lab-step">
+        <input type="checkbox">
+        <div>
+          <strong>【靶场 2A · 办案民警必练（7分钟）】三名跑分嫌疑人笔录矛盾雷达实战：</strong><br>
+          打开仓库中的 <code>labs/session2_crime_investigation/mock_interrogation_records.md</code>，结合上方【多人笔录矛盾雷达提示词】，体验 10 秒生成《补充审讯发问提纲》与《防检察院退查补证清单》。
+        </div>
+      </div>
+      <div class="lab-step">
+        <input type="checkbox">
+        <div>
+          <strong>【靶场 2B · 技术科/网安/经侦必练（8分钟）】3 秒破获洗钱过渡卡、同窝点 IP 与上线号码：</strong><br>
+          在终端执行以下命令，查看脚本如何自动从流水和话单中锁定<strong>王某丙两张零留存过渡卡（到账6分钟即转出）</strong>、<strong>窝点共用 IP（114.88.201.99）</strong>以及<strong>神秘上线号码（13900009999）</strong>：
+          <div class="code-wrapper" style="margin-top:8px;">
+            <div class="code-bar"><span>PowerShell 终端命令</span><button class="copy-btn" onclick="copyCode(this)">复制命令</button></div>
+            <pre class="prompt-pre">python labs/session2_crime_investigation/laundering_and_call_detector.py</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 3: SESSION 3 ==================== -->
+  <section id="tab3" class="tab-pane">
+    <div class="session-banner">
+      <div>
+        <h2>第 3 夜（60 分钟）：警务大数据再应用、Text-to-SQL 与态势大屏一键生成</h2>
+        <p>唤醒沉睡的 110 接处警非结构化文本（严防“民转刑”命案），用大白话写复杂 SQL，10 秒生成领导汇报离线可视化 HTML 大屏。</p>
+      </div>
+      <div class="ratio-pills">
+        <span class="pill-80">📖 80% 直读自学（45分钟）</span>
+        <span class="pill-20">🛠️ 20% 最佳实践带练（15分钟）</span>
+      </div>
+    </div>
+
+    <!-- Module 3.1 -->
+    <div class="section-block">
+      <div class="section-header">
+        <h3>🚨 模块 3.1：唤醒沉睡的 110 警情——非结构化自由文本打标与“防民转刑”高危预警</h3>
+        <span class="time-tag">00:00 - 00:16 · 16分钟</span>
+      </div>
+      <p>110 接处警库里最有价值的是《简要案情》自由文本。同一个地址如果第1次报“噪音求助”、第2次报“前夫踹门推搡”、第3次报“喝酒扬言拿菜刀同归于尽”，传统分类统计根本发现不了！用 AI + 风险词库聚合脚本，即可自动筛出<strong>【红色一级防民转刑督办清单】</strong>：</p>
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】110 非结构化警情批量语义打标与风险评分提示词</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制提示词</button>
+        </div>
+        <pre class="prompt-pre">【角色】你是公安情指行一体化研判专家。
+【任务】请对输入的 110 接处警《简要案情与处警反馈》文本进行深度解析，输出纯 JSON 数组，每条提取：
+- `call_id`: 工单号
+- `dispute_subtype`: 矛盾细类（婚恋情感/家庭房产/邻里噪音/劳资欠薪/债务借贷）
+- `high_risk_flags`: 高危升级标签数组（如 ["涉酒", "持刀/器械", "扬言报复/同归于尽", "肢体冲突", "群体聚集"]）
+- `escalation_score`: 烈度评分（1-10分，涉械或扬言行凶直接评9-10分）
+- `standardized_address`: 标准地址（精确到弄/号/室，用于跨工单重复报警聚合）
+- `followup_action`: 联勤派单建议（如“红色一级预警：推送社区民警+司法所+居委24h上门包干”）</pre>
+      </div>
+    </div>
+
+    <!-- Module 3.2 -->
+    <div class="section-block">
+      <div class="section-header">
+        <h3>🗄️ 模块 3.2：Text-to-SQL 自然语言问数——把大白话变成复杂数据库查询</h3>
+        <span class="time-tag">00:16 - 00:30 · 14分钟</span>
+      </div>
+      <p>遇到跨年度同比环比、周末跨夜时段截取、各派出所 TOP 网格排名等复杂统计，只需<strong>把脱敏表结构（Schema）+ 领导的大白话需求</strong>粘给 AI：</p>
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】警务大数据 Text-to-SQL 万能转换提示词</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制提示词</button>
+        </div>
+        <pre class="prompt-pre">【角色】你是精通 PostgreSQL / Oracle 的公安大数据高级工程师。
+【表结构 Schema】表 `t_110_alarm_records` 含字段：`alarm_id, station_name, alarm_time, alarm_category, location_type, brief_case, standard_addr`。
+【查询需求】请编写 SQL：统计 2026年第3季度（7-9月）各派出所辖区在“周五、周六夜间（20:00至次日凌晨02:00）”、发案部位为“酒吧KTV”或“夜市排档”的“殴打他人”及“寻衅滋事”警情总数，并与2025年同期同口径对比计算同比增幅百分比（带 NULLIF 防除零保护），按同比增幅降序取前5名。</pre>
+      </div>
+    </div>
+
+    <!-- Module 3.3: 20% Lab -->
+    <div class="section-block lab-zone">
+      <div class="section-header">
+        <h3 style="color:#34d399;">🛠️ 第 3 夜 · 20% 最佳实践带练靶场（动手实操 15 分钟）</h3>
+        <span class="time-tag" style="background:#064e3b;color:#6ee7b7;">00:45 - 01:00 · 随堂演练</span>
+      </div>
+      <div class="lab-step">
+        <input type="checkbox">
+        <div>
+          <strong>【靶场 3A · 全员+技术科必练（10分钟）】从 110 原始工单自动挖出“民转刑”高危户并一键生成汇报大屏：</strong><br>
+          在终端执行以下命令，脚本将扫描 <code>mock_110_calls.csv</code>，自动揪出<strong>【宁康苑12号301室（4次报警升级至持刀威胁）】</strong>等 3 处高危地址，并自动生成离线可视化大屏网页：
+          <div class="code-wrapper" style="margin-top:8px;">
+            <div class="code-bar"><span>PowerShell 终端命令</span><button class="copy-btn" onclick="copyCode(this)">复制命令</button></div>
+            <pre class="prompt-pre">python labs/session3_bigdata_reapplication/alert_110_mining_and_dashboard.py</pre>
+          </div>
+        </div>
+      </div>
+      <div class="lab-step">
+        <input type="checkbox">
+        <div>
+          <strong>【靶场 3B · 成果验收（5分钟）】双击打开生成的《智慧情指行与大数据态势研判大屏》：</strong><br>
+          直接点击下方按钮（或在文件夹中双击打开 <code>labs/session3_bigdata_reapplication/dashboard_demo.html</code>），体验无需联网即可全屏向局领导汇报的交互式态势看板！<br>
+          <a href="labs/session3_bigdata_reapplication/dashboard_demo.html" target="_blank" style="display:inline-block;margin-top:10px;background:var(--police-cyan);color:#04130e;font-weight:700;padding:8px 18px;border-radius:6px;text-decoration:none;">🚀 点击全屏打开《某区公安分局 AI 态势研判大屏 Demo》</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: HANDOUTS & INTRANET GUIDE ==================== -->
+  <section id="tab4" class="tab-pane">
+    <div class="session-banner">
+      <div>
+        <h2>🧰 随堂速查桌垫卡 & 公安内网离线大模型（Ollama + 法规 RAG 库）极简部署指南</h2>
+        <p>课后直接带走的“三个一”高价值工程资产，支持在公安内网/视频专网断网工作站 30 分钟搭起私有化警务 AI。</p>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-header">
+        <h3>🖥️ 传统技术科专享：公安内网断网环境“三步搭起私有大模型 + 执法办案法规库”</h3>
+        <span class="time-tag">真数据 100% 不出机房</span>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>部署步骤</th>
+            <th>推荐软件/模型组合</th>
+            <th>核心配置与实战作用</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>第 1 步：离线推理底座</strong></td>
+            <td><code>Ollama</code> + <code>Qwen2.5-14B-Instruct</code> / <code>DeepSeek-R1-32B</code></td>
+            <td>在带 RTX 4090 (24G) 的内网工作站解压模型包，设置 <code>OLLAMA_HOST=0.0.0.0:11434</code>，全分局内网终端均可直接访问，真笔录、真流水直接喂！</td>
+          </tr>
+          <tr>
+            <td><strong>第 2 步：监控视觉复核</strong></td>
+            <td><code>Qwen2.5-VL-7B-Instruct</code></td>
+            <td>接入视频专网告警截图流，自动过滤斑马线等红灯、环卫车作业、夕阳反光等 80% 传统算法误报。</td>
+          </tr>
+          <tr>
+            <td><strong>第 3 步：公安法规 RAG 知识库</strong></td>
+            <td><code>AnythingLLM 离线版</code> + <code>bge-m3</code> 向量模型</td>
+            <td>拖入《刑法》《治安管理处罚法》《道路交通安全法》《刑事案件程序规定》PDF，开启“仅依据知识库回答”，彻底消灭法条引用幻觉！</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="code-wrapper">
+        <div class="code-bar">
+          <span>📋 【直接复制可用】内网 Python 脚本零依赖批量调用本地 Ollama 大模型接口代码（洗 110 警情专用）</span>
+          <button class="copy-btn" onclick="copyCode(this)">一键复制代码</button>
+        </div>
+        <pre class="prompt-pre">import urllib.request
+import json
+
+def ask_intranet_police_llm(prompt_text: str, model_name: str = "qwen2.5:14b") -> str:
+    """零第三方依赖调用公安内网 Ollama 大模型接口（真数据不出内网）"""
+    url = "http://127.0.0.1:11434/api/generate"
+    payload = {
+        "model": model_name,
+        "prompt": prompt_text,
+        "stream": False,
+        "options": {"temperature": 0.1}
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+        method="POST"
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        return json.loads(resp.read().decode("utf-8")).get("response", "")</pre>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast" class="toast">✅ 已复制到剪贴板！可直接粘贴使用</div>
+
+<script>
+  function switchTab(tabId, btnEl) {
+    document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btnEl.classList.add('active');
+  }
+
+  function copyCode(btn) {
+    const pre = btn.closest('.code-wrapper').querySelector('pre');
+    const text = pre.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      const orig = btn.innerText;
+      btn.innerText = '✓ 已复制';
+      setTimeout(() => {
+        toast.style.display = 'none';
+        btn.innerText = orig;
+      }, 1800);
+    });
+  }
+
+  let timerInterval = null;
+  let remainingSeconds = 45 * 60;
+
+  function updateTimerUI() {
+    const mins = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
+    const secs = String(remainingSeconds % 60).padStart(2, '0');
+    document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
+  }
+
+  function startTimer(minutes) {
+    stopTimer();
+    remainingSeconds = minutes * 60;
+    updateTimerUI();
+    timerInterval = setInterval(() => {
+      if (remainingSeconds > 0) {
+        remainingSeconds--;
+        updateTimerUI();
+      } else {
+        stopTimer();
+        alert('⏰ 本阶段计时结束！请切换至下一教学环节。');
+      }
+    }, 1000);
+  }
+
+  function stopTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+</script>
+</body>
+</html>

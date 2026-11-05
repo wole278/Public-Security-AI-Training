@@ -1,0 +1,57 @@
+[
+  {
+    "alert_id": "ALM-20261105-001",
+    "camera_id": "CAM-310199-0182",
+    "location": "星光夜市北口(虚拟)",
+    "time": "2026-11-04 20:15:22",
+    "traditional_cv_tag": "人员异常聚集",
+    "vlm_is_false_alarm": true,
+    "vlm_risk_level": "无",
+    "vlm_scene_desc": "画面为地铁口斑马线前约25名行人正常等待红灯通行，秩序井然，无肢体冲突或围观。",
+    "vlm_disposal": "判定为等红灯正常人群，自动消警归档"
+  },
+  {
+    "alert_id": "ALM-20261105-002",
+    "camera_id": "CAM-310199-0209",
+    "location": "幸福里小区东门消防通道(虚拟)",
+    "time": "2026-11-04 21:05:10",
+    "traditional_cv_tag": "车辆违停占道",
+    "vlm_is_false_alarm": true,
+    "vlm_risk_level": "无",
+    "vlm_scene_desc": "停靠车辆为开启双闪及顶灯的环卫垃圾清运作业车，2名环卫工人正在装卸垃圾桶。",
+    "vlm_disposal": "判定为市政特种作业车辆临时停靠，自动消警归档"
+  },
+  {
+    "alert_id": "ALM-20261105-003",
+    "camera_id": "CAM-310199-0185",
+    "location": "星光夜市烧烤街中段(虚拟)",
+    "time": "2026-11-04 22:42:08",
+    "traditional_cv_tag": "人员异常聚集",
+    "vlm_is_false_alarm": false,
+    "vlm_risk_level": "高",
+    "vlm_scene_desc": "夜排档门前有6名男子发生激烈推搡拉扯，地上有散落啤酒瓶碎片，周围约15人围观拍照。",
+    "vlm_disposal": "【真实高危告警】立即推送街面步巡组与辖区派出所2分钟内到场隔离处置，严防酒后持械伤人"
+  },
+  {
+    "alert_id": "ALM-20261105-004",
+    "camera_id": "CAM-310199-0311",
+    "location": "平安公寓2号门消防登高面(虚拟)",
+    "time": "2026-11-04 23:18:45",
+    "traditional_cv_tag": "车辆违停占道",
+    "vlm_is_false_alarm": false,
+    "vlm_risk_level": "中",
+    "vlm_scene_desc": "1辆黑色私家车（沪A·88X01虚拟）与8辆外卖电瓶车完全堵死消防通道网格线，持续超30分钟。",
+    "vlm_disposal": "【真实占道告警】触发电子车牌短信劝离，并推送社区辅警督促物业保安清障"
+  },
+  {
+    "alert_id": "ALM-20261105-005",
+    "camera_id": "CAM-310199-0092",
+    "location": "滨江步道西侧餐饮街(虚拟)",
+    "time": "2026-11-04 17:48:12",
+    "traditional_cv_tag": "疑似烟火告警",
+    "vlm_is_false_alarm": true,
+    "vlm_risk_level": "无",
+    "vlm_scene_desc": "画面红色光斑系傍晚夕阳在玻璃幕墙上的反光，结合包子铺正常白色水蒸气，无明火黑烟。",
+    "vlm_disposal": "判定为夕阳反光与餐饮蒸汽误报，自动消警归档"
+  }
+]
