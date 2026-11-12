@@ -1,8 +1,16 @@
 # GEMINI.md · 公安警务 AI 实战夜校培训系统（Public-Security-AI-Training）
 
-> **标准继承**：L0 安全与合规底线 + L1-manufacturing（客户私密、信息共享可控、安全）｜真源：`D:\github\project\ai-ops-hub\standards\`
+> **标准继承**：L0 安全与合规底线 + M0 多模型认知路由与成本控制基座 + AG Agent 开发执行基线（`<本机>/ai-ops-hub/standards/AG-agent-dev-baseline.md`）+ L1-manufacturing（客户私密、信息共享可控、安全）｜真源：`<本机>/ai-ops-hub/standards/`
+> **agent_baseline**：1.0　**所属通用工程域**：Domain B 全栈软件 + Domain D 严肃知识工程
+> **默认常驻模型**：`Gemini 3.8 Flash (Medium)`（严格执行 M0 五维科学定级、后台子代理升降级与跨对话交接）
 > **默认数据级别**：P0（100% 程序合成虚拟脱敏实训数据，无任何真实警务/公民信息）　**发布模式**：公开仓库 + GitHub Pages 在线实训门户（`https://wole278.github.io/Public-Security-AI-Training/`）
-> **冲突规则**：L0 不可放宽；L1 与本文件冲突时以本文件为准，并在此注明差异。
+> **冲突规则**：L0、M0、AG 铁律不可放宽；AG 可加严不可放宽；L1 与本文件冲突时以本文件为准，并在此注明差异。
+
+---
+
+## M0 路由项目专属修正子（Project Routing Overlay）
+- **高危升档敏感区（$S_3/R_3 \to \text{T3-A / T4}$）**：凡涉及警务安全与涉密合规底线审查（如 L0 严禁真实警务数据入库扫描机制）或重大课程体系重构，禁止 `3.8 Flash` 独立拍板。
+- **确定性降级白名单（$S_1 \times U_1 \to \text{T1/T2}$）**：课件排版、虚拟案例合成、HTML/Markdown 静态课件生成与网页调试，一律由 `3.8 Flash` 100% 免费承载。
 
 ---
 
